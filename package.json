@@ -2,12 +2,9 @@
   "name": "slackgpt-nodejs",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "main": "singlebot.ts",
   "keywords": [],
-  "author": "",
+  "author": "Kevin Nørby Andersen <things@kevinandersen.dk>",
   "license": "ISC",
   "dependencies": {
     "@slack/bolt": "^3.12.2",

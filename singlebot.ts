@@ -1,33 +1,46 @@
-// Modify the bot.js file
+// bot.js
 
-// Import additional required modules
 require('dotenv').config();
 const { App } = require('@slack/bolt');
 const { WebClient } = require('@slack/web-api');
 const { Configuration, OpenAIApi } = require('openai');
+const fs = require('fs');
 
 const configuration = new Configuration({
     apiKey: process.env.OPENAI_API_KEY,
 });
 const openai = new OpenAIApi(configuration);
 
-// Initialize the Slack bot
-const app = new App({
+const bot = new App({
     token: process.env.SLACK_BOT_TOKEN,
     appToken: process.env.SLACK_APP_TOKEN,
     socketMode: true,
 });
 
-// Implement event listener for app_mention event
-app.event('app_mention', async ({ event, context }) => {
-    await handleMessage(event, context);
+const channels = JSON.parse(fs.readFileSync('channels.json', 'utf-8'));
+
+bot.event('app_mention', async ({ event, context }) => {
+    const channel = event.channel;
+    let promptPrefix;
+
+    for (const ch of channels) {
+        if (channel === ch.role) {
+            promptPrefix = ch.promptPrefix;
+            break;
+        }
+    }
+
+    if (!promptPrefix) {
+        return; // Ignore messages from other channels
+    }
+
+    await handleMessage(event, context, promptPrefix);
 });
 
-// Modify the handleMessage function
-async function handleMessage(event, context) {
+async function handleMessage(event, context, promptPrefix) {
     const webClient = new WebClient(context.botToken);
     const userMessage = event.text.replace(`<@${context.botUserId}>`, '').trim();
-    const gptResponse = await getGPTResponse(userMessage);
+    const gptResponse = await getGPTResponse(promptPrefix, userMessage);
 
     try {
         await webClient.chat.postMessage({
@@ -39,9 +52,10 @@ async function handleMessage(event, context) {
     }
 }
 
-// Create a function to send the user's message to OpenAI GPT API and get a completion result
-async function getGPTResponse(prompt) {
+async function getGPTResponse(promptPrefix, userPrompt) {
     try {
+        const prompt = `${promptPrefix}\n${userPrompt}`;
+
         const response = await openai.createCompletion({
             model: 'text-davinci-003',
             prompt: prompt,
@@ -56,8 +70,4 @@ async function getGPTResponse(prompt) {
     }
 }
 
-// Start the Node.js server
-(async () => {
-    await app.start();
-    console.log('Slack bot is running!');
-})();
+bot.start();
