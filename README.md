@@ -42,7 +42,7 @@ and adapted it slightly:
 2. Toggle the button next to Enable Socket Mode.
 3. Create an app level token, e.g., "simple_bot_app_token".
 4. Click **Generate**.
-5. Store the generated SLACK_APP_TOKEN securely.
+5. Store the generated `SLACK_APP_TOKEN` securely.
 6. Click **Done**.
 
 ### 1.4 Enable Event Subscriptions for the Slackbot
@@ -58,13 +58,13 @@ and adapted it slightly:
 1. Navigate to **Install App** under Settings.
 2. Request to install the app (process may vary depending on your organization).
 3. After approval, revisit the **Install App** tab.
-4. Obtain and store the SLACK_BOT_TOKEN securely.
+4. Obtain and store the `SLACK_BOT_TOKEN` securely.
 
 ## 2. Generate OpenAI API key
 
 1. Visit
    [https://platform.openai.com/account/api-keys](https://platform.openai.com/account/api-keys)
-2. Create new secret key. This is your OPENAI_API_TOKEN
+2. Create new secret key. This is your `OPENAI_API_TOKEN`
 
 You should now have the Slack app set up and tokens available to deploy the bot
 server.
