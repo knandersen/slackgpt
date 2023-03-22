@@ -11,13 +11,36 @@ Requirements:
 This project is inspired by
 [Morten Just and the idea of "team as code"](https://twitter.com/mortenjust/status/1638068433127366657).
 
-# 1. Set up Slack app and retrieve tokens
+# Usage
+
+Follow the installation steps below to set up your Slack app and run the NodeJS
+server locally or deployed somewhere.
+
+The app will create a `@SlackGPT` user inside the slack instance. You interact
+with the user by mentioning it in a channel. How the bot behaves inside a
+channel depends on your configuration in [`channels.json`](/channels.json) where
+you map a channel to a behavior, e.g.
+
+Mentioning `@SlackGPT` in `#ai-copywriter` will cause the bot to prompt OpenAI
+GPT using the following instruction:
+
+> You are an AI copywriter assistant.
+>
+> - Follow the user's requirements carefully & to the letter.
+> - First think step-by-step - describe your plan for what to write, written out
+  > in great detail
+> - Then output your writing in a single block
+> - Minimise any other prose
+
+# Installation
+
+## 1. Set up Slack app and retrieve tokens
 
 I followed this guide
 [https://www.twilio.com/blog/how-to-build-a-slackbot-in-socket-mode-with-python]()
 and adapted it slightly:
 
-## 1.1 Create the Slackbot
+### 1.1 Create the Slackbot
 
 1. Navigate to the [Slack apps dashboard](https://api.slack.com/apps) for the
    Slack API.
@@ -69,19 +92,19 @@ and adapted it slightly:
 You should now have the Slack app set up and tokens available to deploy the bot
 server.
 
-# 3. Deploy NodeJS bot server
+## 3. Deploy NodeJS bot server
 
 You can run the NodeJS bot server locally using `npm run start` or deploy it to
 a service like Render:
 
-## Render CLI
+### Render CLI
 
 [Install the Render CLI](https://render.com/docs/cli) and run the following
 command from the repository root:
 
 `render blueprint launch`
 
-## Manually
+### Deploy to Render manually
 
 Go to the Render website, `Blueprints > New Blueprint instance` and put this
 repository's link in the `Public Git repository` field:
