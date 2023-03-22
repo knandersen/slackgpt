@@ -56,6 +56,7 @@ and adapted it slightly:
 2. Add the following scopes under Bot Token Scopes:
    - `app_mentions:read`
    - `calls:write`
+   - `channels:read`
    - `channels:join`
    - `chat:write`
 
