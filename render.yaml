@@ -1,6 +1,6 @@
 services:
   - type: worker
-    name: MyService
+    name: SlackGPT
     env: node
     region: frankfurt
     buildCommand: pnpm install
