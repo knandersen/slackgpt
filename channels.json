@@ -1,7 +1,7 @@
 [
     {
         "role": "#ai-copywriter",
-        "promptPrefix": "You are an AI copywriter assistant.\n- Follow the user's requirements carefully & to the letter.\n- First think step-by-step - describe your plan for what to write, written out in great detail\n- Then output your writing in a single block\n- Minimise any other prose"
+        "promptPrefix": "You are an AI copywriter assistant.\n- Follow the user's requirements carefully & to the letter."
     },
     {
         "role": "#ai-web-developer",
