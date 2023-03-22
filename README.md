@@ -71,7 +71,8 @@ server.
 
 # 3. Deploy NodeJS bot server
 
-There are two ways to deploy the NodeJS server on Render.
+You can run the NodeJS bot server locally using `npm run start` or deploy it to
+a service like Render:
 
 ## Render CLI
 
