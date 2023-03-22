@@ -88,5 +88,5 @@ repository's link in the `Public Git repository` field:
 `https://github.com/knandersen/slackgpt.git`
 
 This will open the Render website and use this repo and the `render.yaml` as the
-service blueprint. You will be prompted to enter the environment variable keys
-generated in the steps above.
+service blueprint. You will be prompted to enter the tokens generated in the
+steps above as environment variable keys.
