@@ -7,7 +7,7 @@ services:
     startCommand: pnpm start
     repo: https://github.com/knandersen/slackgpt.git
     branch: main
-    plan: free
+    plan: starter
     envVars:
     - key: SLACK_APP_TOKEN
       sync: false # placeholder
