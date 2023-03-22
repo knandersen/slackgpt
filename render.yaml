@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: MyService
+    env: node
+    region: frankfurt
+    buildCommand: pnpm install
+    startCommand: pnpm singlebot.ts
+    repo: https://github.com/knandersen/slackgpt.git
+    branch: main
+    plan: free
