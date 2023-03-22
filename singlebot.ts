@@ -17,14 +17,20 @@ const bot = new App({
     socketMode: true,
 });
 
-const channels = JSON.parse(fs.readFileSync('channels.json', 'utf-8'));
+const webClient = new WebClient(process.env.SLACK_BOT_TOKEN);
+
+const monitoredChannels = JSON.parse(fs.readFileSync('channels.json', 'utf-8'));
 
 bot.event('app_mention', async ({ event, context }) => {
-    const channel = event.channel;
+    const channelId = event.channel;
     let promptPrefix;
 
-    for (const ch of channels) {
-        if (channel === ch.role) {
+    
+    const channelInfo = await webClient.conversations.info({ channel: channelId });
+    const channelName = "#" + channelInfo.channel.name;
+    
+    for (const ch of monitoredChannels) {
+        if (channelName === ch.role) {
             promptPrefix = ch.promptPrefix;
             break;
         }
@@ -38,7 +44,6 @@ bot.event('app_mention', async ({ event, context }) => {
 });
 
 async function handleMessage(event, context, promptPrefix) {
-    const webClient = new WebClient(context.botToken);
     const userMessage = event.text.replace(`<@${context.botUserId}>`, '').trim();
     const gptResponse = await getGPTResponse(promptPrefix, userMessage);
 
