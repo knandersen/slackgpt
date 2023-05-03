@@ -8,8 +8,8 @@ Requirements:
 - OpenAI API access
 - NodeJS and somewhere to deploy (I use [Render](http://render.com))
 
-This project is inspired by
-[Morten Just and the idea of "team as code"](https://twitter.com/mortenjust/status/1638068433127366657).
+This project is inspired by Morten Just (@mortenjust) and the
+[idea of "team as code"](https://twitter.com/mortenjust/status/1638068433127366657).
 
 # Usage
 
